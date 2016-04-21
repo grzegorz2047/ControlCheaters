@@ -1,0 +1,4 @@
+name: ControlCheaters
+version: 1.0
+main: pl.grzegorz2047.controlcheaters.ControlCheaters
+depend: [ProtocolLib]
