@@ -1,4 +1,7 @@
 name: ControlCheaters
 version: 1.0
 main: pl.grzegorz2047.controlcheaters.ControlCheaters
-depend: [ProtocolLib]
+commands:
+    sprawdz:
+        description: Pozwala sprawdzic czy gracz ma aure!
+        aliases: [check, spr, ac]
