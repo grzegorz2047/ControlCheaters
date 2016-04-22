@@ -9,6 +9,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -80,8 +81,12 @@ public class ControlCheaters extends JavaPlugin implements Listener {
     }
 
     private static Random random = new Random();
-
+    NPC npc;
     public void checkPlayer(Player p, String reviewer) {
+        if(npc == null){
+            NPC npc = new NPC("test", p.getLocation());
+            npc.spawn();
+        }
         final String playername = p.getName();
         CheckPlayer checkPlayer = new CheckPlayer(p.getName());
         checkPlayer.setReviewer(reviewer);
@@ -167,7 +172,19 @@ public class ControlCheaters extends JavaPlugin implements Listener {
             CheckPlayer review = checkedPlayers.get(event.getDamager().getName());
             review.incrementHitFakes();
         }
+        if(event.getEntity() instanceof Player)
+        if (isNpc((Player) event.getEntity(), npc)) {
+            System.out.println("AWDAWDAWDAWDAWDAWDWA");
+        }
+        System.out.println("1 AWDAWDAWDAWDAWDAWDWA");
+
     }
+
+
+    public boolean isNpc(Player player, NPC npc) {
+        return player.getEntityId() == npc.getEntityID();
+    }
+
 
     @EventHandler
     public void onTouch(EntityDamageEvent event) {
